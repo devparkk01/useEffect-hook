@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
 
 /*
-We pass count in the dependency array . So whenever the count value changes useEffect function is called .
+We passed an empty dependency array . Since there are no values in the dependency array , useEffect function 
+will be never be called again . 
 
 initial output  : 
 Redered  0 
 Effect hook called 0
 
 After first click : 
-Redered  1 Counter
-clean up function 0 Counter
-Effect hook called 1
+Redered  1 
 
 After second click : 
 Redered  2 
-clean up function 1 
-Effect hook called 2
-
 
 
 */
@@ -29,7 +25,7 @@ const Counter = () => {
     return () => {
         console.log(`clean up function ${count}`)
     }
-  } , [count]);
+  } , []);
 
 
   return (
