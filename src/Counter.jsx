@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 /*
-We passed an empty dependency array . Since there are no values in the dependency array , useEffect function 
-will be never be called again . 
+We passed count state in the dependency array . we are also updating this state inside the useEffect function . 
 
-initial output  : 
-Redered  0 
-Effect hook called 0
+Initial rendering 
+useEffect function called => which changes state count,which will cause component to be rerendered automatically
 
-After first click : 
-Redered  1 
+Next rendering 
+cleanup function for previous rendering
+useEffect function called => which changes state count, which will cause component to be rerendered again automatically
 
-After second click : 
-Redered  2 
-
+so on 
+thus we are stuck in an infinite loop , so don't run this code 
 
 */
 
@@ -21,11 +19,11 @@ const Counter = () => {
   const [count , setCount ] = useState(0 ) ; 
   useEffect(() => {
     console.log(`Effect hook called ${count}`);
-
+    setCount(count + 1 ) ;
     return () => {
         console.log(`clean up function ${count}`)
     }
-  } , []);
+  } , [count]);
 
 
   return (
